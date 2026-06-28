@@ -6,12 +6,13 @@ public class Keycard : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if(other.CompareTag("Player"))
         {
             totalKey++;
-            Destroy(gameObject);
 
-            Debug.Log("Key Collected: " + totalKey);
+            FindObjectOfType<KeyPopupUI>().ShowPopup(totalKey,3);
+
+            Destroy(gameObject);
         }
     }
 }
