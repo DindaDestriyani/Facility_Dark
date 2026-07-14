@@ -4,31 +4,34 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pausePanel;
+    public GameObject touchSystem;   // Tambahkan ini
 
     bool isPaused = false;
 
     public void PauseGame()
-{
-    Debug.Log("PauseGame dijalankan");
+    {
+        pausePanel.SetActive(true);
 
-    pausePanel.SetActive(true);
+        touchSystem.SetActive(false); // Matikan area swipe
 
-    Time.timeScale = 0f;
+        Time.timeScale = 0f;
 
-    Cursor.lockState = CursorLockMode.None;
-    Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
-    isPaused = true;
-}
+        isPaused = true;
+    }
 
     public void ResumeGame()
     {
         pausePanel.SetActive(false);
 
+        touchSystem.SetActive(true); // Aktifkan lagi
+
         Time.timeScale = 1f;
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.None;
+         Cursor.visible = true;
 
         isPaused = false;
     }
@@ -36,6 +39,6 @@ public class PauseMenu : MonoBehaviour
     public void MainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Main menu");
     }
 }
